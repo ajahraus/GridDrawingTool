@@ -8,6 +8,23 @@ import javax.swing.*;
 * 
 */
 public class mapElement{
+	
+	// Maybe this should be an int? I'm not sure, the int could represent its
+	// location in terms of grid coordinates, but a double easily lets you turn
+	// of grid snapping. I suspect a double is the way to go, and enforce grid
+	// snapping elsewhere in the code.
+	private double x;
+	private double y;
+	// Whether or not the element is able to be rendered, there needs to be some
+	// sort of sprite associated with the element, so that it can be seen while
+	// it is being placed is the canvas.
+	private Image img = new ImageIcon("missingImage.png").getImage();
+	// Some mapElements may not be renderable, such as light objects (i.e. for
+	// use with dynamic lighting). This would mean that they would need to be
+	// able to be "turned off" when creating the final image of the map. This
+	// flag is to determine which elements are to be rednered or not.
+	boolean isRenderable = true;
+	
 	/** 
     * Class constructor
 	* @param x the x coordinates
@@ -30,59 +47,41 @@ public class mapElement{
 		img = image;
 	}	
 
-	// Maybe this should be an int? I'm not sure, the int could represent its
-	// location in terms of grid coordinates, but a double easily lets you turn
-	// of grid snapping. I suspect a double is the way to go, and enforce grid
-	// snapping elsewhere in the code.
-	double X;
-	double Y;
-
 	public double getX(){
-		return X;
+		return this.x;
 	}
 
 	public void setX( double newX ){
-		X = newX;
+		this.x = newX;
 	}
 
 	public double getY(){
-		return Y;
+		return this.y;
 	}
 	
 	public void setY( double newY ){
-		Y = newY;
+		this.y = newY;
 	}
 
-	// Some mapElements may not be renderable, such as light objects (i.e. for
-	// use with dynamic lighting). This would mean that they would need to be
-	// able to be "turned off" when creating the final image of the map. This
-	// flag is to determine which elements are to be rednered or not.
-	boolean isRenderable = true;
-
 	public boolean getRenderable(){
-		return isRenderable;
+		return this.isRenderable;
 	}
 
 	public void setRenderable(boolean newRend){
-		isRenderable = newRend;
+		this.isRenderable = newRend;
 	}
 
-	// Whether or not the element is able to be rendered, there needs to be some
-	// sort of sprite associated with the element, so that it can be seen while
-	// it is being placed is the canvas.
-	Image img = new ImageIcon("missingImage.png").getImage();
-
 	public Image getImg(){
-		return img;
+		return this.img;
 	}
 
 	public void setImg(Image image){
-		img = image;
+		this.img = image;
 	}
+
 
 	public void paintElement(Graphics g, mapPanel mp){
 		g.drawImage(this.img, (int) X, (int) Y, mp);
 	}
-	
 
 }
