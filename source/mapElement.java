@@ -30,9 +30,9 @@ public class mapElement{
 	* @param x the x coordinates
 	* @param y the y coordinates
     */
-	public mapElement(int x, int y){
-		X = x;
-		Y = y;
+	public mapElement(int X, int Y){
+		this.x = X;
+		this.y = Y;
 	}
 
 	/** 
@@ -41,10 +41,10 @@ public class mapElement{
 	* @param y the y coordinates
 	* @param image the image for the element
     */
-	public mapElement(int x, int y, Image image){
-		X = x;
-		Y = y;
-		img = image;
+	public mapElement(int X, int Y, Image image){
+		this.x = X;
+		this.y = Y;
+		this.img = image;
 	}	
 
 	public double getX(){
@@ -81,7 +81,7 @@ public class mapElement{
 
 
 	public void paintElement(Graphics g, mapPanel mp){
-		g.drawImage(this.img, (int) X, (int) Y, mp);
+		g.drawImage(this.img, (int) this.x, (int) this.y, mp);
 	}
 
 }
